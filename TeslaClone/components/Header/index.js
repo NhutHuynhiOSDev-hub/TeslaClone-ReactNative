@@ -8,10 +8,10 @@ const Header = (props) => {
         style={styles.logo}
         source={require("../../assets/images/logo.png")}
       />
-      <Image
+      {/* <Image
         style={styles.menu}
         source={require("../../assets/images/menu.png")}
-      />
+      /> */}
     </View>
   );
 };

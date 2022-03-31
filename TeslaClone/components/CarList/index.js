@@ -3,7 +3,7 @@ import styles from "./styles";
 import cars from "./cars";
 import CartItem from "../CarItem";
 
-const CarList = (props) => {
+const CarList = () => {
   const renderItem = ({ item }) => <CartItem car={item} />;
 
   return (
