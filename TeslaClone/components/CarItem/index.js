@@ -4,6 +4,8 @@ import styles from "./styles";
 import StyledButton from "../StyledButton";
 
 const CartItem = (props) => {
+  console.log("CartItem", props);
+  const navigation = props.navigation;
   const { name, tagline, taglineCTA, image } = props.car;
 
   return (
@@ -23,7 +25,8 @@ const CartItem = (props) => {
           type="primary"
           content={"Custom Order"}
           onPress={() => {
-            console.warn("Custom Order was pressed");
+            navigation.navigate("Details");
+            // console.warn("Custom Order was pressed");
           }}
         />
 

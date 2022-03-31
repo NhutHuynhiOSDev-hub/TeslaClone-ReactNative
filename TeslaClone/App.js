@@ -6,11 +6,24 @@ import Details from "./components/Details";
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Settings from "./components/Settings";
 
+const BottomTab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
 const RootStack = createNativeStackNavigator();
+
+function HomeScreen(props) {
+  console.log("HomeScreen", props);
+  return (
+    <View style={styles.container}>
+      <CarList navigation={props.navigation} />
+      <StatusBar style="aupropsto" />
+    </View>
+  );
+}
 
 function MainStackScreen() {
   return (
@@ -19,11 +32,11 @@ function MainStackScreen() {
         name="HomeScreen"
         component={HomeScreen}
         options={{
-          title: "",
+          headerShown: true,
           headerTransparent: true,
-          headerShadowVisible: false,
         }}
       />
+      <MainStack.Screen name="Details" component={Details} />
     </MainStack.Navigator>
   );
 }
@@ -32,36 +45,34 @@ function RootStackScreen() {
   return (
     <RootStack.Navigator mode="modal">
       <RootStack.Screen
-        options={{
-          title: "",
-
-          headerRight: () => (
-            <Button
-              type="clear"
-              icon={{
-                name: "menu",
-                size: 24,
-                color: "black",
-              }}
-            />
-          ),
-          headerTransparent: true,
-          headerShadowVisible: false,
-        }}
         name="MainStackScreen"
         component={MainStackScreen}
+        options={{
+          headerShown: false,
+        }}
       />
-      <RootStack.Screen name="Details" component={Details} />
     </RootStack.Navigator>
   );
 }
 
-function HomeScreen({ navigation }) {
+function BottomTabScreen() {
   return (
-    <View style={styles.container}>
-      <CarList />
-      <StatusBar style="auto" />
-    </View>
+    <BottomTab.Navigator>
+      <BottomTab.Screen
+        name="Home"
+        component={RootStackScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <BottomTab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </BottomTab.Navigator>
   );
 }
 
@@ -69,7 +80,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <RootStackScreen />
+        <BottomTabScreen />
       </NavigationContainer>
     </SafeAreaProvider>
   );

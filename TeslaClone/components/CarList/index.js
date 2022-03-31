@@ -3,8 +3,11 @@ import styles from "./styles";
 import cars from "./cars";
 import CartItem from "../CarItem";
 
-const CarList = () => {
-  const renderItem = ({ item }) => <CartItem car={item} />;
+const CarList = (props) => {
+  console.log("CarList", props);
+  const renderItem = ({ item }) => (
+    <CartItem navigation={props.navigation} car={item} />
+  );
 
   return (
     <View style={styles.contaier}>
@@ -12,7 +15,7 @@ const CarList = () => {
         data={cars}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        pagingEnabled={true}
+        // pagingEnabled={true}
       />
     </View>
   );
