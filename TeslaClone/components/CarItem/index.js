@@ -26,7 +26,6 @@ const CartItem = (props) => {
           content={"Custom Order"}
           onPress={() => {
             navigation.navigate("Details");
-            // console.warn("Custom Order was pressed");
           }}
         />
 
@@ -34,7 +33,7 @@ const CartItem = (props) => {
           type="secondary"
           content={"Existing Inventory"}
           onPress={() => {
-            console.warn("Existing Inventory was pressed");
+            navigation.navigate("MyModal");
           }}
         />
       </View>

@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import styles from "./styles";
 import cars from "./cars";
 import CartItem from "../CarItem";
@@ -15,7 +15,7 @@ const CarList = (props) => {
         data={cars}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        // pagingEnabled={true}
+        pagingEnabled={true}
       />
     </View>
   );

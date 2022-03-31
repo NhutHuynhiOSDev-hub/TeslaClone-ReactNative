@@ -3,13 +3,41 @@ import { StyleSheet, Dimensions } from "react-native";
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: Dimensions.get("window").height,
+    height: "100%",
+    backgroundColor: "grey",
   },
 
   titles: {
     width: "100%",
-    justifyContent: "center",
+    marginTop: "30%",
     alignItems: "center",
+  },
+
+  title: {
+    fontSize: 40,
+    fontWeight: "500",
+  },
+
+  subTitle: {
+    fontSize: 16,
+    color: "#5c5e62",
+  },
+
+  subTitleCTA: {
+    textDecorationLine: "underline",
+  },
+
+  buttonContainer: {
+    position: "absolute",
+    bottom: 50,
+    width: "100%",
+  },
+
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+    position: "absolute",
   },
 });
 
