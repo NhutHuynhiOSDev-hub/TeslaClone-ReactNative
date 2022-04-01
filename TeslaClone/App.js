@@ -1,25 +1,25 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import CarList from "./components/CarList";
-import Header from "./components/Header";
 import Details from "./components/Details";
-import { Button } from "react-native-elements";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Settings from "./components/Settings";
-import Modal from "./components/Modal";
 import ModalScreen from "./components/Modal";
 import SettingsScreen from "./components/Settings";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import MenuScreen from "./components/Menu/menu";
 
+const MainDrawer = createDrawerNavigator();
 const BottomTab = createBottomTabNavigator();
 const MainStack = createNativeStackNavigator();
 const ModalStack = createNativeStackNavigator();
 
 function HomeScreen(props) {
   console.log("HomeScreen", props);
+
   return (
     <View style={styles.container}>
       <CarList navigation={props.navigation} />
@@ -74,11 +74,7 @@ function BottomTabScreen() {
           } else if (route.name === "Settings") {
             iconName = focused ? "star" : "star-outline";
           }
-
-          <ion-icon name=""></ion-icon>;
-
           return <Ionicons name={iconName} size={size} color={color} />;
-          // You can return any component that you like here!
         },
       })}
     >
@@ -94,11 +90,20 @@ function BottomTabScreen() {
   );
 }
 
+function DrawerScreen() {
+  return (
+    <MainDrawer.Navigator initialRouteName="Tabbar">
+      <MainDrawer.Screen name="Menu" component={MenuScreen} />
+      <MainDrawer.Screen name="Tabbar" component={BottomTabScreen} />
+    </MainDrawer.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <BottomTabScreen />
+        <DrawerScreen />
       </NavigationContainer>
     </SafeAreaProvider>
   );
